@@ -1,7 +1,11 @@
 const startBtn = document.querySelector('.btn-start')
 const pauseBtn = document.querySelector('.btn-pause')
 const resetBtn = document.querySelector('.btn-reset')
-const headerTime = document.querySelector('.header-time')
+
+const spanHours = document.querySelector('.span-hours')
+const spanMinutes = document.querySelector('.span-minutes')
+const spanSeconds = document.querySelector('.span-seconds')
+
 let hours = 0
 let minutes = 0
 let seconds = 0
@@ -38,7 +42,24 @@ function startTimer() {
             hours =+ 1
             minutes = 0
         }
-        headerTime.textContent = `${hours}:${minutes}:${seconds}`
+        
+        if(seconds < 10) {
+            spanSeconds.textContent = '0' + seconds
+        } else {
+            spanSeconds.textContent = seconds
+        }
+
+        if(minutes < 10) {
+            spanMinutes.textContent = '0' + minutes
+        } else {
+            spanMinutes.textContent = minutes
+        }
+
+        if(hours < 10) {
+            spanHours.textContent = '0' + hours
+        } else {
+            spanHours.textContent = hours
+        }
         startBtn.classList.add('disabled')
         startBtn.disabled = true
 }
@@ -51,7 +72,9 @@ function pauseTimer(id) {
 
 
 function resetTimer(id) {
-    headerTime.textContent = '0:0:0'
+    spanSeconds.textContent = '00'
+    spanMinutes.textContent = '00'
+    spanHours.textContent = '00'
     hours = 0
     minutes = 0
     seconds = 0
